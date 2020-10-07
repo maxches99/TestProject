@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,10 @@
 		2154DD13252DCA9500B1AE32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2154DD11252DCA9500B1AE32 /* LaunchScreen.storyboard */; };
 		2154DD1E252DCA9600B1AE32 /* FKStestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154DD1D252DCA9600B1AE32 /* FKStestTests.swift */; };
 		2154DD29252DCA9600B1AE32 /* FKStestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154DD28252DCA9600B1AE32 /* FKStestUITests.swift */; };
+		2154DD51252DDB4200B1AE32 /* Stevia in Frameworks */ = {isa = PBXBuildFile; productRef = 2154DD50252DDB4200B1AE32 /* Stevia */; };
+		2154DD5A252DDED200B1AE32 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2154DD59252DDED200B1AE32 /* RxSwift */; };
+		2154DD5C252DDED200B1AE32 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2154DD5B252DDED200B1AE32 /* RxCocoa */; };
+		2154DD61252DF7F200B1AE32 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154DD60252DF7F200B1AE32 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,7 @@
 		2154DD24252DCA9600B1AE32 /* FKStestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FKStestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2154DD28252DCA9600B1AE32 /* FKStestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FKStestUITests.swift; sourceTree = "<group>"; };
 		2154DD2A252DCA9600B1AE32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2154DD60252DF7F200B1AE32 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +61,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2154DD5C252DDED200B1AE32 /* RxCocoa in Frameworks */,
+				2154DD5A252DDED200B1AE32 /* RxSwift in Frameworks */,
+				2154DD51252DDB4200B1AE32 /* Stevia in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +110,7 @@
 				2154DD06252DCA9300B1AE32 /* AppDelegate.swift */,
 				2154DD08252DCA9300B1AE32 /* SceneDelegate.swift */,
 				2154DD0A252DCA9300B1AE32 /* ViewController.swift */,
+				2154DD60252DF7F200B1AE32 /* ViewModel.swift */,
 				2154DD0C252DCA9300B1AE32 /* Main.storyboard */,
 				2154DD0F252DCA9500B1AE32 /* Assets.xcassets */,
 				2154DD11252DCA9500B1AE32 /* LaunchScreen.storyboard */,
@@ -144,6 +153,11 @@
 			dependencies = (
 			);
 			name = FKStest;
+			packageProductDependencies = (
+				2154DD50252DDB4200B1AE32 /* Stevia */,
+				2154DD59252DDED200B1AE32 /* RxSwift */,
+				2154DD5B252DDED200B1AE32 /* RxCocoa */,
+			);
 			productName = FKStest;
 			productReference = 2154DD03252DCA9300B1AE32 /* FKStest.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +229,10 @@
 				Base,
 			);
 			mainGroup = 2154DCFA252DCA9300B1AE32;
+			packageReferences = (
+				2154DD4F252DDB4100B1AE32 /* XCRemoteSwiftPackageReference "Stevia" */,
+				2154DD58252DDED200B1AE32 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 2154DD04252DCA9300B1AE32 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -260,6 +278,7 @@
 			files = (
 				2154DD0B252DCA9300B1AE32 /* ViewController.swift in Sources */,
 				2154DD07252DCA9300B1AE32 /* AppDelegate.swift in Sources */,
+				2154DD61252DF7F200B1AE32 /* ViewModel.swift in Sources */,
 				2154DD09252DCA9300B1AE32 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -593,6 +612,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2154DD4F252DDB4100B1AE32 /* XCRemoteSwiftPackageReference "Stevia" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/freshOS/Stevia";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+		2154DD58252DDED200B1AE32 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2154DD50252DDB4200B1AE32 /* Stevia */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2154DD4F252DDB4100B1AE32 /* XCRemoteSwiftPackageReference "Stevia" */;
+			productName = Stevia;
+		};
+		2154DD59252DDED200B1AE32 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2154DD58252DDED200B1AE32 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		2154DD5B252DDED200B1AE32 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2154DD58252DDED200B1AE32 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2154DCFB252DCA9300B1AE32 /* Project object */;
 }
