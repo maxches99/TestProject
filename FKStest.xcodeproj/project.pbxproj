@@ -22,6 +22,7 @@
 		215B995A25303B37006DD8EA /* BiometryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B995925303B37006DD8EA /* BiometryType.swift */; };
 		215B996625303D12006DD8EA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B996525303D12006DD8EA /* RegistrationViewController.swift */; };
 		215B996F2530505A006DD8EA /* AuthAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B996E2530505A006DD8EA /* AuthAccountViewController.swift */; };
+		215B99782530620A006DD8EA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B99772530620A006DD8EA /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		215B995925303B37006DD8EA /* BiometryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometryType.swift; sourceTree = "<group>"; };
 		215B996525303D12006DD8EA /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		215B996E2530505A006DD8EA /* AuthAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAccountViewController.swift; sourceTree = "<group>"; };
+		215B99772530620A006DD8EA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 		215B995825303B10006DD8EA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				215B9976253061EE006DD8EA /* Profile */,
 				215B996D25305009006DD8EA /* AuthAccount */,
 				215B996425303CD0006DD8EA /* Registration */,
 				215B9956253039F5006DD8EA /* LoginWithPinCode */,
@@ -184,6 +187,14 @@
 				215B996E2530505A006DD8EA /* AuthAccountViewController.swift */,
 			);
 			path = AuthAccount;
+			sourceTree = "<group>";
+		};
+		215B9976253061EE006DD8EA /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				215B99772530620A006DD8EA /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +342,7 @@
 				215B996F2530505A006DD8EA /* AuthAccountViewController.swift in Sources */,
 				2154DD61252DF7F200B1AE32 /* LoginWithPinCodeViewModel.swift in Sources */,
 				2154DD09252DCA9300B1AE32 /* SceneDelegate.swift in Sources */,
+				215B99782530620A006DD8EA /* ProfileViewController.swift in Sources */,
 				215B995A25303B37006DD8EA /* BiometryType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
