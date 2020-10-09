@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2154DD07252DCA9300B1AE32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154DD06252DCA9300B1AE32 /* AppDelegate.swift */; };
 		2154DD09252DCA9300B1AE32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154DD08252DCA9300B1AE32 /* SceneDelegate.swift */; };
-		2154DD0B252DCA9300B1AE32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154DD0A252DCA9300B1AE32 /* ViewController.swift */; };
+		2154DD0B252DCA9300B1AE32 /* LoginWithPinCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154DD0A252DCA9300B1AE32 /* LoginWithPinCodeViewController.swift */; };
 		2154DD0E252DCA9300B1AE32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2154DD0C252DCA9300B1AE32 /* Main.storyboard */; };
 		2154DD10252DCA9500B1AE32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2154DD0F252DCA9500B1AE32 /* Assets.xcassets */; };
 		2154DD13252DCA9500B1AE32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2154DD11252DCA9500B1AE32 /* LaunchScreen.storyboard */; };
@@ -18,7 +18,10 @@
 		2154DD51252DDB4200B1AE32 /* Stevia in Frameworks */ = {isa = PBXBuildFile; productRef = 2154DD50252DDB4200B1AE32 /* Stevia */; };
 		2154DD5A252DDED200B1AE32 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2154DD59252DDED200B1AE32 /* RxSwift */; };
 		2154DD5C252DDED200B1AE32 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2154DD5B252DDED200B1AE32 /* RxCocoa */; };
-		2154DD61252DF7F200B1AE32 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154DD60252DF7F200B1AE32 /* ViewModel.swift */; };
+		2154DD61252DF7F200B1AE32 /* LoginWithPinCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154DD60252DF7F200B1AE32 /* LoginWithPinCodeViewModel.swift */; };
+		215B995A25303B37006DD8EA /* BiometryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B995925303B37006DD8EA /* BiometryType.swift */; };
+		215B996625303D12006DD8EA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B996525303D12006DD8EA /* RegistrationViewController.swift */; };
+		215B996F2530505A006DD8EA /* AuthAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B996E2530505A006DD8EA /* AuthAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +45,7 @@
 		2154DD03252DCA9300B1AE32 /* FKStest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FKStest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2154DD06252DCA9300B1AE32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2154DD08252DCA9300B1AE32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2154DD0A252DCA9300B1AE32 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2154DD0A252DCA9300B1AE32 /* LoginWithPinCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPinCodeViewController.swift; sourceTree = "<group>"; };
 		2154DD0D252DCA9300B1AE32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2154DD0F252DCA9500B1AE32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2154DD12252DCA9500B1AE32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,7 +56,10 @@
 		2154DD24252DCA9600B1AE32 /* FKStestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FKStestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2154DD28252DCA9600B1AE32 /* FKStestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FKStestUITests.swift; sourceTree = "<group>"; };
 		2154DD2A252DCA9600B1AE32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2154DD60252DF7F200B1AE32 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		2154DD60252DF7F200B1AE32 /* LoginWithPinCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPinCodeViewModel.swift; sourceTree = "<group>"; };
+		215B995925303B37006DD8EA /* BiometryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometryType.swift; sourceTree = "<group>"; };
+		215B996525303D12006DD8EA /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		215B996E2530505A006DD8EA /* AuthAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,8 +115,8 @@
 			children = (
 				2154DD06252DCA9300B1AE32 /* AppDelegate.swift */,
 				2154DD08252DCA9300B1AE32 /* SceneDelegate.swift */,
-				2154DD0A252DCA9300B1AE32 /* ViewController.swift */,
-				2154DD60252DF7F200B1AE32 /* ViewModel.swift */,
+				215B995825303B10006DD8EA /* Scenes */,
+				215B995725303B06006DD8EA /* Models */,
 				2154DD0C252DCA9300B1AE32 /* Main.storyboard */,
 				2154DD0F252DCA9500B1AE32 /* Assets.xcassets */,
 				2154DD11252DCA9500B1AE32 /* LaunchScreen.storyboard */,
@@ -135,6 +141,49 @@
 				2154DD2A252DCA9600B1AE32 /* Info.plist */,
 			);
 			path = FKStestUITests;
+			sourceTree = "<group>";
+		};
+		215B9956253039F5006DD8EA /* LoginWithPinCode */ = {
+			isa = PBXGroup;
+			children = (
+				2154DD0A252DCA9300B1AE32 /* LoginWithPinCodeViewController.swift */,
+				2154DD60252DF7F200B1AE32 /* LoginWithPinCodeViewModel.swift */,
+			);
+			path = LoginWithPinCode;
+			sourceTree = "<group>";
+		};
+		215B995725303B06006DD8EA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				215B995925303B37006DD8EA /* BiometryType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		215B995825303B10006DD8EA /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				215B996D25305009006DD8EA /* AuthAccount */,
+				215B996425303CD0006DD8EA /* Registration */,
+				215B9956253039F5006DD8EA /* LoginWithPinCode */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		215B996425303CD0006DD8EA /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				215B996525303D12006DD8EA /* RegistrationViewController.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		215B996D25305009006DD8EA /* AuthAccount */ = {
+			isa = PBXGroup;
+			children = (
+				215B996E2530505A006DD8EA /* AuthAccountViewController.swift */,
+			);
+			path = AuthAccount;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,10 +325,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2154DD0B252DCA9300B1AE32 /* ViewController.swift in Sources */,
+				215B996625303D12006DD8EA /* RegistrationViewController.swift in Sources */,
+				2154DD0B252DCA9300B1AE32 /* LoginWithPinCodeViewController.swift in Sources */,
 				2154DD07252DCA9300B1AE32 /* AppDelegate.swift in Sources */,
-				2154DD61252DF7F200B1AE32 /* ViewModel.swift in Sources */,
+				215B996F2530505A006DD8EA /* AuthAccountViewController.swift in Sources */,
+				2154DD61252DF7F200B1AE32 /* LoginWithPinCodeViewModel.swift in Sources */,
 				2154DD09252DCA9300B1AE32 /* SceneDelegate.swift in Sources */,
+				215B995A25303B37006DD8EA /* BiometryType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

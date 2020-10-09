@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import LocalAuthentication
 
-class ViewModel {
+class LoginWithPinCodeViewModel {
 	
 	var loggedIn = PublishSubject<(Bool, Bool)>()
 	var alertError = PublishSubject<String>()
@@ -19,13 +19,20 @@ class ViewModel {
 	
 	private let context = LAContext()
 	
-	private var password = "1111"
+	private var password = "11111"
 	private var currentPassword = ""
 	
 	private let bag = DisposeBag()
 	
-	init() {
-		typeOfLA = context.biometryType
+	init(accessTypesOfBiometry: [BiometryType]) {
+		switch context.biometryType {
+			case .faceID:
+				typeOfLA = accessTypesOfBiometry.contains(.faceID) ? .faceID : .none
+			case .touchID:
+				typeOfLA = accessTypesOfBiometry.contains(.touchID) ? .touchID : .none
+			case .none:
+				typeOfLA = .none
+		}
 	}
 	
 	func auth() {

@@ -10,12 +10,53 @@ import Stevia
 import RxSwift
 import RxCocoa
 
-class ViewController: UIViewController {
+class LoginWithPinCodeViewController: UIViewController {
 	
 	let sizeOfButton = CGFloat(80)
-	let vm = ViewModel()
+	let vm = LoginWithPinCodeViewModel(accessTypesOfBiometry: [.faceID])
 	
 	private let bag = DisposeBag()
+	
+	private lazy var lblNameAccount: UILabel = {
+		let lbl = UILabel()
+		
+		lbl.text("Максим Чесников")
+		lbl.font = .systemFont(ofSize: 14, weight: .medium)
+		
+		return lbl
+	}()
+	
+	private lazy var lblNameAccountSubTitle: UILabel = {
+		let lbl = UILabel()
+		
+		lbl.text("2 часа назад")
+		lbl.font = .systemFont(ofSize: 12, weight: .regular)
+		lbl.textColor = .systemGray
+		
+		return lbl
+	}()
+	
+	private lazy var imgAccount: UIImageView = {
+		let img = UIImageView()
+		
+		img.image("appleLogo")
+		img.tintColor = .label
+		img.setContentHuggingPriority(.required, for: .horizontal)
+		
+		return img
+	}()
+	
+	private var btnLogout: UIButton = {
+		let btn = UIButton()
+		
+		btn.text("Выйти")
+		btn.backgroundColor = .clear
+		btn.tintColor = .systemBlue
+		btn.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+		btn.setTitleColor(.systemBlue, for: .normal)
+		
+		return btn
+	}()
 	
 	private lazy var lblPassword: UILabel = {
 		let lbl = UILabel()
@@ -40,11 +81,8 @@ class ViewController: UIViewController {
 				btn.imageView?.tintColor = .systemGray4
 				btn.imageView?.size(sizeOfButton * 0.8)
 			case .none:
-//				btn.isEnabled = false
-//				btn.backgroundColor = .clear
-				btn.setImage(UIImage(named: "faceId_icon"), for: .normal)
-				btn.imageView?.tintColor = .systemGray4
-				btn.imageView?.size(sizeOfButton * 0.8)
+				btn.isEnabled = false
+				btn.backgroundColor = .clear
 		}
 		
 		return btn
@@ -53,7 +91,7 @@ class ViewController: UIViewController {
 	private lazy var dots: [UIView] = {
 		var arrDots: [UIView] = []
 		
-		for _ in 0..<4 {
+		for _ in 0..<5 {
 			let dot = UIView()
 			dot.backgroundColor = .systemGray4
 			dot.size(10)
@@ -104,6 +142,18 @@ class ViewController: UIViewController {
 		
 		view.backgroundColor = .systemBackground
 		
+		let vStackAccount = UIStackView()
+		vStackAccount.axis = .vertical
+		vStackAccount.spacing = 4
+		vStackAccount.addArrangedSubview(lblNameAccount)
+		vStackAccount.addArrangedSubview(lblNameAccountSubTitle)
+		
+		let hStackAccount = UIView()
+		hStackAccount.sv(imgAccount, vStackAccount, btnLogout)
+		hStackAccount.layout(
+			|imgAccount.height(30).width(20)-16-vStackAccount-(>=16)-btnLogout|
+		)
+		
 		let hStack1 = UIStackView()
 		hStack1.axis = .horizontal
 		hStack1.spacing = 16
@@ -147,8 +197,12 @@ class ViewController: UIViewController {
 			hStackDots.addArrangedSubview(dot)
 		}
 		
-		view.sv(vStack, lblPassword, hStackDots)
-		
+		view.sv(hStackAccount, vStack, lblPassword, hStackDots)
+		if UIDevice.current.screenType == .iPhones_4_4S || UIDevice.current.screenType == .iPhones_5_5s_5c_SE {
+			hStackAccount.left(16).right(16).bottom(50)
+		} else {
+			hStackAccount.left(16).right(16).top(50)
+		}
 		vStack.centerVertically().centerHorizontally()
 		hStackDots.centerHorizontally().Bottom == vStack.Top - 32
 		lblPassword.centerHorizontally().Bottom == hStackDots.Top - 16
@@ -172,7 +226,7 @@ class ViewController: UIViewController {
 					strongSelf.showAlert(message: "Введен некорректный пинкод!")
 				} else if flag {
 					strongSelf.dots.map { dot in
-						dot.backgroundColor = .systemGreen
+						dot.backgroundColor = .systemBlue
 						UIView.animate(withDuration: 0.5, animations: { [weak self] in
 							dot.transform = CGAffineTransform(scaleX: 2, y: 2)
 						}, completion: {_ in
@@ -189,7 +243,7 @@ class ViewController: UIViewController {
 			.asDriver(onErrorJustReturn: (0, false))
 			.drive(onNext: { [weak self] index, isChoose in
 				UIView.animate(withDuration: 0.3, animations: { [weak self] in
-					self?.dots[index].backgroundColor = isChoose ? .systemGreen : .systemGray4
+					self?.dots[index].backgroundColor = isChoose ? .systemBlue : .systemGray4
 				})
 				})
 			.disposed(by: bag)
@@ -236,15 +290,18 @@ import SwiftUI
 @available(iOS 13.0.0, *)
 struct ViewController_Previews: PreviewProvider {
   static var previews: some View {
-	ContainerView().preferredColorScheme(.light).edgesIgnoringSafeArea(.all)
+	Group {
+		ContainerView().preferredColorScheme(.light).edgesIgnoringSafeArea(.all)
+		ContainerView().previewDevice("iPhone SE (1st generation)").preferredColorScheme(.light).edgesIgnoringSafeArea(.all)
+	}
   }
   
   struct ContainerView: UIViewControllerRepresentable {
 	
 	
-	let tabBarVC = ViewController()
+	let tabBarVC = LoginWithPinCodeViewController()
 	
-	func makeUIViewController(context: UIViewControllerRepresentableContext<ViewController_Previews.ContainerView>) -> ViewController {
+	func makeUIViewController(context: UIViewControllerRepresentableContext<ViewController_Previews.ContainerView>) -> LoginWithPinCodeViewController {
 	  return tabBarVC
 	}
 	
@@ -262,4 +319,41 @@ func performInMainThread(block: @escaping () -> ()) {
 			block()
 		}
 	}
+}
+extension UIDevice {
+	var iPhoneX: Bool { UIScreen.main.nativeBounds.height == 2436 }
+	var iPhone: Bool { UIDevice.current.userInterfaceIdiom == .phone }
+	var iPad: Bool { UIDevice().userInterfaceIdiom == .pad }
+	enum ScreenType: String {
+		case iPhones_4_4S = "iPhone 4 or iPhone 4S"
+		case iPhones_5_5s_5c_SE = "iPhone 5, iPhone 5s, iPhone 5c or iPhone SE"
+		case iPhones_6_6s_7_8 = "iPhone 6, iPhone 6S, iPhone 7 or iPhone 8"
+		case iPhones_6Plus_6sPlus_7Plus_8Plus = "iPhone 6 Plus, iPhone 6S Plus, iPhone 7 Plus or iPhone 8 Plus"
+		case iPhones_X_XS = "iPhone X or iPhone XS"
+		case iPhone_XR_11 = "iPhone XR or iPhone 11"
+		case iPhone_XSMax_ProMax = "iPhone XS Max or iPhone Pro Max"
+		case iPhone_11Pro = "iPhone 11 Pro"
+		case unknown
+	}
+	var screenType: ScreenType {
+		switch UIScreen.main.nativeBounds.height {
+		case 1136:
+			return .iPhones_5_5s_5c_SE
+		case 1334:
+			return .iPhones_6_6s_7_8
+		case 1792:
+			return .iPhone_XR_11
+		case 1920, 2208:
+			return .iPhones_6Plus_6sPlus_7Plus_8Plus
+		case 2426:
+			return .iPhone_11Pro
+		case 2436:
+			return .iPhones_X_XS
+		case 2688:
+			return .iPhone_XSMax_ProMax
+		default:
+			return .unknown
+		}
+	}
+
 }
