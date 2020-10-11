@@ -126,7 +126,6 @@ struct ProfileViewController_Previews: PreviewProvider {
   static var previews: some View {
 	Group {
 		ContainerView().preferredColorScheme(.light).edgesIgnoringSafeArea(.all)
-		ContainerView().previewDevice("iPhone SE (1st generation)").preferredColorScheme(.light).edgesIgnoringSafeArea(.all)
 	}
   }
   

@@ -23,6 +23,13 @@
 		215B996625303D12006DD8EA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B996525303D12006DD8EA /* RegistrationViewController.swift */; };
 		215B996F2530505A006DD8EA /* AuthAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B996E2530505A006DD8EA /* AuthAccountViewController.swift */; };
 		215B99782530620A006DD8EA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B99772530620A006DD8EA /* ProfileViewController.swift */; };
+		C336549A2533A47900CD22DD /* CreateChangePincodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654992533A47900CD22DD /* CreateChangePincodeViewController.swift */; };
+		C33654A32533A75900CD22DD /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654A22533A75900CD22DD /* KeychainPasswordItem.swift */; };
+		C33654AF2533A7D900CD22DD /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654AE2533A7D900CD22DD /* KeychainConfiguration.swift */; };
+		C33654B42533A87B00CD22DD /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654B32533A87B00CD22DD /* RegistrationViewModel.swift */; };
+		C33654B92533A90500CD22DD /* AuthAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654B82533A90500CD22DD /* AuthAccountViewModel.swift */; };
+		C33654BF2533AC2A00CD22DD /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C33654BE2533AC2A00CD22DD /* CryptoSwift */; };
+		C35E8EC825334FE900DFC32E /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E8EC725334FE900DFC32E /* SecurityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +69,12 @@
 		215B996525303D12006DD8EA /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		215B996E2530505A006DD8EA /* AuthAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAccountViewController.swift; sourceTree = "<group>"; };
 		215B99772530620A006DD8EA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C33654992533A47900CD22DD /* CreateChangePincodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChangePincodeViewController.swift; sourceTree = "<group>"; };
+		C33654A22533A75900CD22DD /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
+		C33654AE2533A7D900CD22DD /* KeychainConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConfiguration.swift; sourceTree = "<group>"; };
+		C33654B32533A87B00CD22DD /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		C33654B82533A90500CD22DD /* AuthAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAccountViewModel.swift; sourceTree = "<group>"; };
+		C35E8EC725334FE900DFC32E /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2154DD5C252DDED200B1AE32 /* RxCocoa in Frameworks */,
+				C33654BF2533AC2A00CD22DD /* CryptoSwift in Frameworks */,
 				2154DD5A252DDED200B1AE32 /* RxSwift in Frameworks */,
 				2154DD51252DDB4200B1AE32 /* Stevia in Frameworks */,
 			);
@@ -117,6 +131,8 @@
 			children = (
 				2154DD06252DCA9300B1AE32 /* AppDelegate.swift */,
 				2154DD08252DCA9300B1AE32 /* SceneDelegate.swift */,
+				C33654AA2533A7B600CD22DD /* Configurators */,
+				C33654A12533A74500CD22DD /* Helpers */,
 				215B995825303B10006DD8EA /* Scenes */,
 				215B995725303B06006DD8EA /* Models */,
 				2154DD0C252DCA9300B1AE32 /* Main.storyboard */,
@@ -165,6 +181,8 @@
 		215B995825303B10006DD8EA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				C33654982533A45500CD22DD /* CreateChangePincode */,
+				C35E8EC325334FBB00DFC32E /* Security */,
 				215B9976253061EE006DD8EA /* Profile */,
 				215B996D25305009006DD8EA /* AuthAccount */,
 				215B996425303CD0006DD8EA /* Registration */,
@@ -177,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				215B996525303D12006DD8EA /* RegistrationViewController.swift */,
+				C33654B32533A87B00CD22DD /* RegistrationViewModel.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -185,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				215B996E2530505A006DD8EA /* AuthAccountViewController.swift */,
+				C33654B82533A90500CD22DD /* AuthAccountViewModel.swift */,
 			);
 			path = AuthAccount;
 			sourceTree = "<group>";
@@ -195,6 +215,38 @@
 				215B99772530620A006DD8EA /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		C33654982533A45500CD22DD /* CreateChangePincode */ = {
+			isa = PBXGroup;
+			children = (
+				C33654992533A47900CD22DD /* CreateChangePincodeViewController.swift */,
+			);
+			path = CreateChangePincode;
+			sourceTree = "<group>";
+		};
+		C33654A12533A74500CD22DD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C33654A22533A75900CD22DD /* KeychainPasswordItem.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C33654AA2533A7B600CD22DD /* Configurators */ = {
+			isa = PBXGroup;
+			children = (
+				C33654AE2533A7D900CD22DD /* KeychainConfiguration.swift */,
+			);
+			path = Configurators;
+			sourceTree = "<group>";
+		};
+		C35E8EC325334FBB00DFC32E /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				C35E8EC725334FE900DFC32E /* SecurityViewController.swift */,
+			);
+			path = Security;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +269,7 @@
 				2154DD50252DDB4200B1AE32 /* Stevia */,
 				2154DD59252DDED200B1AE32 /* RxSwift */,
 				2154DD5B252DDED200B1AE32 /* RxCocoa */,
+				C33654BE2533AC2A00CD22DD /* CryptoSwift */,
 			);
 			productName = FKStest;
 			productReference = 2154DD03252DCA9300B1AE32 /* FKStest.app */;
@@ -292,6 +345,7 @@
 			packageReferences = (
 				2154DD4F252DDB4100B1AE32 /* XCRemoteSwiftPackageReference "Stevia" */,
 				2154DD58252DDED200B1AE32 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				C33654BD2533AC2A00CD22DD /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 			);
 			productRefGroup = 2154DD04252DCA9300B1AE32 /* Products */;
 			projectDirPath = "";
@@ -341,9 +395,15 @@
 				2154DD07252DCA9300B1AE32 /* AppDelegate.swift in Sources */,
 				215B996F2530505A006DD8EA /* AuthAccountViewController.swift in Sources */,
 				2154DD61252DF7F200B1AE32 /* LoginWithPinCodeViewModel.swift in Sources */,
+				C336549A2533A47900CD22DD /* CreateChangePincodeViewController.swift in Sources */,
+				C33654B92533A90500CD22DD /* AuthAccountViewModel.swift in Sources */,
+				C33654AF2533A7D900CD22DD /* KeychainConfiguration.swift in Sources */,
+				C35E8EC825334FE900DFC32E /* SecurityViewController.swift in Sources */,
 				2154DD09252DCA9300B1AE32 /* SceneDelegate.swift in Sources */,
+				C33654B42533A87B00CD22DD /* RegistrationViewModel.swift in Sources */,
 				215B99782530620A006DD8EA /* ProfileViewController.swift in Sources */,
 				215B995A25303B37006DD8EA /* BiometryType.swift in Sources */,
+				C33654A32533A75900CD22DD /* KeychainPasswordItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,6 +754,14 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		C33654BD2533AC2A00CD22DD /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -711,6 +779,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2154DD58252DDED200B1AE32 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
+		};
+		C33654BE2533AC2A00CD22DD /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C33654BD2533AC2A00CD22DD /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import LocalAuthentication
+import CryptoSwift
 
 class LoginWithPinCodeViewModel {
 	
@@ -33,10 +34,19 @@ class LoginWithPinCodeViewModel {
 			case .none:
 				typeOfLA = .none
 		}
+        setPinCode()
 	}
-	
-	func auth() {
-		context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Biometric Auth") {
+    
+    func setPinCode() {
+        let salt = "x4vV8bGgqqmQwgCoyXFQj+(o.nUNQhVP7ND"
+        let email = UserDefaults.standard.string(forKey: "email")
+        let key = "\(email).\(salt)".sha256()
+        guard let password = UserDefaults.standard.string(forKey: key) else { return }
+        self.password = password
+    }
+    
+    func auth() {
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Biometric Auth") {
 			[weak self] (res, err) in
 			DispatchQueue.main.async {
 				self?.loggedIn.onNext((res, true))
