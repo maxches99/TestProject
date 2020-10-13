@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import LocalAuthentication
 
 class UserConfigurator {
     
     static let shared = UserConfigurator()
+    
+    let context = LAContext()
     
     var name = UserDefaults.standard.string(forKey: "name")
     

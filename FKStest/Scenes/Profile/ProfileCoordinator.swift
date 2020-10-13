@@ -19,8 +19,6 @@ class ProfileCoordinator: BaseCoordinator {
         viewController.vm = profileViewModel
         viewController.title = "Профиль"
         
-        
-        // Coordinator subscribes to events and decides when and how to navigate
         profileViewModel.goToSecurityScreen
             .subscribe(onNext: {[weak self] in
                 // Navigate to dashboard
@@ -35,9 +33,7 @@ class ProfileCoordinator: BaseCoordinator {
                 self?.logOut()
             })
             .disposed(by: self.disposeBag)
-//        navigationController.navigationBar.prefersLargeTitles = true
-//        navigationController.navigationItem.largeTitleDisplayMode = .automatic
-//        navigationController.navigationBar.sizeToFit()
+
         self.navigationController.navigationBar.isHidden = false
         
         self.navigationController.pushViewController(viewController, animated: true)
@@ -49,23 +45,21 @@ class ProfileCoordinator: BaseCoordinator {
             let scene = UIApplication.shared.connectedScenes.first
             if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
                 parentCoordinator?.didFinish(coordinator: self)
+                sd.appCoordinator.isLogout = true
                 sd.appCoordinator.start()
             }
         } else {
             parentCoordinator?.didFinish(coordinator: self)
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.appCoordinator.isLogout = true
             appDelegate.appCoordinator.start()
         }
-        // TODO: here you could check if user is signed in and show appropriate screen
-//        let coordinator = RegistrationCoordinator()
-//        coordinator.navigationController = self.navigationController
-//        self.start(coordinator: coordinator)
+        
     }
     
     func openSecurity() {
         self.navigationController.navigationBar.isHidden = true
         
-        // TODO: here you could check if user is signed in and show appropriate screen
         let coordinator = SecurityCoordinator()
         coordinator.navigationController = self.navigationController
         self.start(coordinator: coordinator)

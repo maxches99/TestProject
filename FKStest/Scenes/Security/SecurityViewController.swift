@@ -178,18 +178,18 @@ class SecurityViewController: UIViewController {
     
     private func setupBindings() {
         switchFaceID.rx.isOn
-            .asDriver()
+            .asDriver(onErrorJustReturn: false)
+            .skip(1)
             .drive(onNext: {[weak self] isOn in
                 self?.vm?.toggleFaceID.onNext(())
-                self?.switchFaceID.isOn = self?.vm?.isFaceID ?? false
             })
             .disposed(by: bag)
         
         switchTouchID.rx.isOn
-            .asDriver()
+            .asDriver(onErrorJustReturn: false)
+            .skip(1)
             .drive(onNext: {[weak self] isOn in
                 self?.vm?.toggleTouchID.onNext(())
-                self?.switchTouchID.isOn = self?.vm?.isTouchID ?? false
             })
             .disposed(by: bag)
         
@@ -197,6 +197,20 @@ class SecurityViewController: UIViewController {
             .asDriver()
             .drive(onNext: {[weak self] in
                 self?.vm?.goToChangePincode.onNext(())
+            })
+            .disposed(by: bag)
+        
+        vm?.changeStateFaceID
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: {[weak self] in
+                self?.switchFaceID.isOn = self?.vm?.isFaceID ?? false
+            })
+            .disposed(by: bag)
+        
+        vm?.changeStateTouchID
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: {[weak self] in
+                self?.switchTouchID.isOn = self?.vm?.isTouchID ?? false
             })
             .disposed(by: bag)
         

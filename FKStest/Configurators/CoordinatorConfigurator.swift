@@ -44,6 +44,7 @@ class BaseCoordinator: Coordinator {
 class AppCoordinator: BaseCoordinator {
     
     var window = UIWindow(frame: UIScreen.main.bounds)
+    var isLogout = false
     
     init(navC: UINavigationController) {
         super.init()
@@ -57,21 +58,28 @@ class AppCoordinator: BaseCoordinator {
         self.window.rootViewController = self.navigationController
         self.window.makeKeyAndVisible()
         
-        let user = UserConfigurator()
+        let user = UserConfigurator.shared
+        user.refresh()
         if let pincode = user.pincode {
-            openPincode()
+            if !isLogout {
+                openPincode()
+            } else {
+                openRegistration()
+            }
         } else {
             openRegistration()
         }
     }
     
     private func openRegistration() {
+        isLogout = false
         let coordinator = RegistrationCoordinator()
         coordinator.navigationController = self.navigationController
         self.start(coordinator: coordinator)
     }
     
     private func openPincode() {
+        isLogout = false
         let coordinator = LoginWithPinCodeCoordinator()
         coordinator.navigationController = self.navigationController
         self.start(coordinator: coordinator)
