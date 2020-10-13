@@ -9,7 +9,7 @@
 import Foundation
  
 struct KeychainConfiguration {
-    static let serviceName = "MyAppService"
+    static let serviceName = "FKStest"
     
     static let accessGroup: String? = nil
 }

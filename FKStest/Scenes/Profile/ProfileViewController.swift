@@ -12,32 +12,45 @@ import RxSwift
 import RxCocoa
 
 class ProfileViewController: UIViewController {
+    
+    var vm: ProfileViewModel?
+    
+    private let bag = DisposeBag()
 	
-	private var imgLogo: UIImageView = {
+	private lazy var imgLogo: UIImageView = {
 		let img = UIImageView()
 		
-		img.image("appleLogo")
-		img.tintColor = .label
-		
+		img.image("avatar")
+        if #available(iOS 13.0, *) {
+            img.tintColor = .label
+        } else {
+            img.tintColor = .black
+        }
+        img.contentMode = .center
+        img.layer.masksToBounds = true
 		return img
 	}()
 	
-	private var lblName: UILabel = {
+	private lazy var lblName: UILabel = {
 		let lbl = UILabel()
 		
-		lbl.text("Максим Чесников")
+        lbl.text(vm?.name ?? "")
 		lbl.font = .systemFont(ofSize: 20, weight: .medium)
-		lbl.textColor = .label
+        if #available(iOS 13.0, *) {
+            lbl.textColor = .label
+        } else {
+            lbl.textColor = .black
+        }
 		lbl.numberOfLines = 2
 		lbl.textAlignment = .center
 		
 		return lbl
 	}()
 	
-	private var lblEmail: UILabel = {
+	private lazy var lblEmail: UILabel = {
 		let lbl = UILabel()
 		
-		lbl.text("maxches99@icloud.com")
+        lbl.text(vm?.email ?? "")
 		lbl.font = .systemFont(ofSize: 16, weight: .medium)
 		lbl.textColor = .systemGray
 		lbl.numberOfLines = 2
@@ -69,19 +82,30 @@ class ProfileViewController: UIViewController {
 		
 		return btn
 	}()
-	
+    
 	override func loadView() {
 		let view = UIView()
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = . white
+        }
 		
 		let separator1 = UIView()
-		separator1.backgroundColor = .placeholderText
+        if #available(iOS 13.0, *) {
+            separator1.backgroundColor = .placeholderText
+        } else {
+            separator1.backgroundColor = .gray
+        }
 		separator1.height(1)
 		
 		let separator2 = UIView()
-		separator2.backgroundColor = .placeholderText
+        if #available(iOS 13.0, *) {
+            separator2.backgroundColor = .placeholderText
+        } else {
+            separator2.backgroundColor = .gray
+        }
 		separator2.height(1)
-		
-		
 		
 		view.sv(imgLogo,
 				lblName,
@@ -89,12 +113,15 @@ class ProfileViewController: UIViewController {
 				separator2,
 				btnAuthChange,
 				btnLogout)
-		imgLogo.centerHorizontally().height(50).width(40).top(32 * UIScreen.main.nativeScale)
+        imgLogo.centerHorizontally().size(100).top(32 + topbarHeight)
 		lblName.left(16).right(16).Top == imgLogo.Bottom + 16 * UIScreen.main.nativeScale / 2
 		lblEmail.left(16).right(16).Top == lblName.Bottom + 8 * UIScreen.main.nativeScale / 2
 		separator2.left(48).right(48).Top == lblEmail.Bottom + 8 * UIScreen.main.nativeScale / 2
 		btnAuthChange.left(48).Top == separator2.Bottom + 8 * UIScreen.main.nativeScale / 2
 		btnLogout.left(48).Top == btnAuthChange.Bottom + 8 * UIScreen.main.nativeScale / 2
+        
+        imgLogo.layer.cornerRadius = 50
+        imgLogo.clipsToBounds = true
 		
 		
 		self.view = view
@@ -102,23 +129,40 @@ class ProfileViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
+        setupBindings()
 
-		// Do any additional setup after loading the view.
 	}
-	
-
-	/*
-	// MARK: - Navigation
-
-	// In a storyboard-based application, you will often want to do a little preparation before navigation
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		// Get the new view controller using segue.destination.
-		// Pass the selected object to the new view controller.
-	}
-	*/
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.leftBarButtonItems = []
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    private func setupBindings() {
+        
+        lblName.text(vm?.name ?? "")
+        lblEmail.text(vm?.email ?? "")
+        
+        btnAuthChange.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                self?.vm?.goToSecurityScreen.onNext(())
+            })
+            .disposed(by: bag)
+        
+        btnLogout.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                self?.vm?.logout()
+            })
+            .disposed(by: bag)
+        
+    }
+    
 
 }
-
 
 import SwiftUI
 @available(iOS 13.0.0, *)
@@ -131,10 +175,12 @@ struct ProfileViewController_Previews: PreviewProvider {
   
   struct ContainerView: UIViewControllerRepresentable {
 	
-	
-	let tabBarVC = ProfileViewController()
-	
 	func makeUIViewController(context: UIViewControllerRepresentableContext<ProfileViewController_Previews.ContainerView>) -> ProfileViewController {
+        let vm = ProfileViewModel()
+        
+        let tabBarVC = ProfileViewController()
+        tabBarVC.vm = vm
+        
 	  return tabBarVC
 	}
 	

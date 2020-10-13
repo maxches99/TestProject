@@ -8,15 +8,24 @@
 import UIKit
 import Stevia
 import RxSwift
+import RxCocoa
 
 class SecurityViewController: UIViewController {
+    
+    var vm: SecurityViewModel?
+    
+    private let bag = DisposeBag()
     
     private var lblTouchID: UILabel = {
         let lbl = UILabel()
         
         lbl.text("TouchID")
         lbl.font = .systemFont(ofSize: 20, weight: .medium)
-        lbl.textColor = .label
+        if #available(iOS 13.0, *) {
+            lbl.textColor = .label
+        } else {
+            lbl.textColor = .black
+        }
         lbl.numberOfLines = 2
         lbl.textAlignment = .center
         
@@ -28,7 +37,11 @@ class SecurityViewController: UIViewController {
         
         lbl.text("FaceID")
         lbl.font = .systemFont(ofSize: 20, weight: .medium)
-        lbl.textColor = .label
+        if #available(iOS 13.0, *) {
+            lbl.textColor = .label
+        } else {
+            lbl.textColor = .black
+        }
         lbl.numberOfLines = 2
         lbl.textAlignment = .center
         
@@ -72,29 +85,44 @@ class SecurityViewController: UIViewController {
         return btn
     }()
     
-    private var switchTouchID: UISwitch = {
-        let btn = UISwitch()
+    private lazy var switchTouchID: UISwitch = {
+        let swtch = UISwitch()
 
+        swtch.isOn = vm?.isTouchID ?? false
         
-        return btn
+        return swtch
     }()
     
-    private var switchFaceID: UISwitch = {
-        let btn = UISwitch()
+    private lazy var switchFaceID: UISwitch = {
+        let swtch = UISwitch()
 
+        swtch.isOn = vm?.isFaceID ?? false
         
-        return btn
+        return swtch
     }()
     
     override func loadView() {
         let view = UIView()
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
         
         let separator1 = UIView()
-        separator1.backgroundColor = .placeholderText
+        if #available(iOS 13.0, *) {
+            separator1.backgroundColor = .placeholderText
+        } else {
+            separator1.backgroundColor = .gray
+        }
         separator1.height(1)
         
         let separator2 = UIView()
-        separator2.backgroundColor = .placeholderText
+        if #available(iOS 13.0, *) {
+            separator2.backgroundColor = .placeholderText
+        } else {
+            separator2.backgroundColor = .gray
+        }
         separator2.height(1)
         
         view.sv(
@@ -108,7 +136,7 @@ class SecurityViewController: UIViewController {
             separator1,
             separator2)
         
-        lblTouchID.left(16).top(32)
+        lblTouchID.left(16).top(32 + topbarHeight)
         separator1.left(16).right(16).Top == lblTouchID.Bottom + 8
         switchTouchID.right(16).Bottom == lblTouchID.Bottom
         lblSubTouchID.left(16).right(16).Top == separator1.Bottom + 8
@@ -125,7 +153,53 @@ class SecurityViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupBindings()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.hidesBackButton = true
+        let newBackButton: UIBarButtonItem
+        if #available(iOS 14.0, *) {
+            newBackButton = UIBarButtonItem(title: "Назад")
+        } else {
+            newBackButton = UIBarButtonItem()
+            newBackButton.title = "Назад"
+        }
+        newBackButton.rx.tap
+            .asDriver()
+            .drive(onNext: {[weak self] in
+                self?.vm?.goBack.onNext(())
+            })
+            .disposed(by: bag)
+        self.navigationItem.leftBarButtonItem = newBackButton
+    }
+    
+    private func setupBindings() {
+        switchFaceID.rx.isOn
+            .asDriver()
+            .drive(onNext: {[weak self] isOn in
+                self?.vm?.toggleFaceID.onNext(())
+                self?.switchFaceID.isOn = self?.vm?.isFaceID ?? false
+            })
+            .disposed(by: bag)
+        
+        switchTouchID.rx.isOn
+            .asDriver()
+            .drive(onNext: {[weak self] isOn in
+                self?.vm?.toggleTouchID.onNext(())
+                self?.switchTouchID.isOn = self?.vm?.isTouchID ?? false
+            })
+            .disposed(by: bag)
+        
+        btnChangePincode.rx.tap
+            .asDriver()
+            .drive(onNext: {[weak self] in
+                self?.vm?.goToChangePincode.onNext(())
+            })
+            .disposed(by: bag)
+        
     }
 
 }

@@ -13,14 +13,14 @@ import RxCocoa
 class LoginWithPinCodeViewController: UIViewController {
 	
 	let sizeOfButton = CGFloat(80)
-	let vm = LoginWithPinCodeViewModel(accessTypesOfBiometry: [.faceID])
+    let vm: LoginWithPinCodeViewModel
 	
 	private let bag = DisposeBag()
 	
 	private lazy var lblNameAccount: UILabel = {
 		let lbl = UILabel()
 		
-		lbl.text("Максим Чесников")
+        lbl.text(vm.name)
 		lbl.font = .systemFont(ofSize: 14, weight: .medium)
 		
 		return lbl
@@ -39,8 +39,14 @@ class LoginWithPinCodeViewController: UIViewController {
 	private lazy var imgAccount: UIImageView = {
 		let img = UIImageView()
 		
-		img.image("appleLogo")
-		img.tintColor = .label
+        img.image("avatar")
+        if #available(iOS 13.0, *) {
+            img.tintColor = .label
+        } else {
+            img.tintColor = .black
+        }
+        img.contentMode = .center
+        img.layer.masksToBounds = true
 		img.setContentHuggingPriority(.required, for: .horizontal)
 		
 		return img
@@ -51,7 +57,6 @@ class LoginWithPinCodeViewController: UIViewController {
 		
 		btn.text("Выйти")
 		btn.backgroundColor = .clear
-		btn.tintColor = .systemBlue
 		btn.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
 		btn.setTitleColor(.systemBlue, for: .normal)
 		
@@ -74,11 +79,19 @@ class LoginWithPinCodeViewController: UIViewController {
 		switch vm.typeOfLA {
 			case .faceID:
 				btn.setImage(UIImage(named: "faceId_icon"), for: .normal)
-				btn.imageView?.tintColor = .systemGray4
+                if #available(iOS 13.0, *) {
+                    btn.imageView?.tintColor = .systemGray4
+                } else {
+                    btn.imageView?.tintColor = .gray
+                }
 				btn.imageView?.size(sizeOfButton * 0.8)
 			case .touchID:
 				btn.setImage(UIImage(named: "touchId_icon"), for: .normal)
-				btn.imageView?.tintColor = .systemGray4
+                if #available(iOS 13.0, *) {
+                    btn.imageView?.tintColor = .systemGray4
+                } else {
+                    btn.imageView?.tintColor = .gray
+                }
 				btn.imageView?.size(sizeOfButton * 0.8)
 			case .none:
 				btn.isEnabled = false
@@ -93,7 +106,11 @@ class LoginWithPinCodeViewController: UIViewController {
 		
 		for _ in 0..<5 {
 			let dot = UIView()
-			dot.backgroundColor = .systemGray4
+            if #available(iOS 13.0, *) {
+                dot.backgroundColor = .systemGray4
+            } else {
+                dot.backgroundColor = .gray
+            }
 			dot.size(10)
 			dot.layer.cornerRadius = 5
 			arrDots.append(dot)
@@ -112,9 +129,15 @@ class LoginWithPinCodeViewController: UIViewController {
 			let btn = UIButton()
 			btn.text(str)
 			btn.titleLabel?.font = .systemFont(ofSize: 36)
-			btn.titleLabel?.tintColor = .label
-			btn.titleLabel?.textColor = .label
-			btn.backgroundColor = .systemGray4
+            if #available(iOS 13.0, *) {
+                btn.titleLabel?.tintColor = .label
+                btn.titleLabel?.textColor = .label
+                btn.backgroundColor = .systemGray4
+            } else {
+                btn.titleLabel?.tintColor = .black
+                btn.titleLabel?.textColor = .black
+                btn.backgroundColor = .gray
+            }
 			btn.layer.cornerRadius = sizeOfButton / 2
 			btn.size(sizeOfButton)
 			
@@ -131,16 +154,34 @@ class LoginWithPinCodeViewController: UIViewController {
 		
 		btn.layer.cornerRadius = sizeOfButton / 2
 		btn.setImage(UIImage(named: "delete"), for: .normal)
-		btn.imageView?.tintColor = .systemGray4
+        if #available(iOS 13.0, *) {
+            btn.imageView?.tintColor = .systemGray4
+        } else {
+            btn.imageView?.tintColor = .gray
+        }
 		btn.imageView?.size(sizeOfButton * 0.8)
 		
 		return btn
 	}()
-	
+    
+    init(viewModel: LoginWithPinCodeViewModel) {
+        vm = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 	override func loadView() {
 		let view = UIView()
 		
-		view.backgroundColor = .systemBackground
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = . white
+        }
 		
 		let vStackAccount = UIStackView()
 		vStackAccount.axis = .vertical
@@ -151,8 +192,9 @@ class LoginWithPinCodeViewController: UIViewController {
 		let hStackAccount = UIView()
 		hStackAccount.sv(imgAccount, vStackAccount, btnLogout)
 		hStackAccount.layout(
-			|imgAccount.height(30).width(20)-16-vStackAccount-(>=16)-btnLogout|
+			|imgAccount.size(30)-16-vStackAccount-(>=16)-btnLogout|
 		)
+        hStackAccount.height(30)
 		
 		let hStack1 = UIStackView()
 		hStack1.axis = .horizontal
@@ -199,13 +241,16 @@ class LoginWithPinCodeViewController: UIViewController {
 		
 		view.sv(hStackAccount, vStack, lblPassword, hStackDots)
 		if UIDevice.current.screenType == .iPhones_4_4S || UIDevice.current.screenType == .iPhones_5_5s_5c_SE {
-			hStackAccount.left(16).right(16).bottom(50)
+			hStackAccount.left(16).right(16).bottom(8)
 		} else {
 			hStackAccount.left(16).right(16).top(50)
 		}
 		vStack.centerVertically().centerHorizontally()
 		hStackDots.centerHorizontally().Bottom == vStack.Top - 32
 		lblPassword.centerHorizontally().Bottom == hStackDots.Top - 16
+        
+        imgAccount.layer.cornerRadius = 15
+        imgAccount.clipsToBounds = true
 		
 		
 		self.view = view
@@ -223,7 +268,7 @@ class LoginWithPinCodeViewController: UIViewController {
 			.drive(onNext: { [weak self] flag, isBiometry in
 				guard let strongSelf = self else { return }
 				if !flag && !isBiometry {
-					strongSelf.showAlert(message: "Введен некорректный пинкод!")
+					strongSelf.showAlert(title: "Введен некорректный пинкод!")
 				} else if flag {
 					strongSelf.dots.map { dot in
 						dot.backgroundColor = .systemBlue
@@ -232,7 +277,9 @@ class LoginWithPinCodeViewController: UIViewController {
 						}, completion: {_ in
 							UIView.animate(withDuration: 0.5, animations: { [weak self] in
 								dot.transform = CGAffineTransform.identity
-							})
+                            }, completion: { [weak self]_ in
+                                self?.vm.goToNextScreen.onNext(())
+                            })
 						})
 					}
 				}
@@ -243,7 +290,10 @@ class LoginWithPinCodeViewController: UIViewController {
 			.asDriver(onErrorJustReturn: (0, false))
 			.drive(onNext: { [weak self] index, isChoose in
 				UIView.animate(withDuration: 0.3, animations: { [weak self] in
-					self?.dots[index].backgroundColor = isChoose ? .systemBlue : .systemGray4
+                    if #available(iOS 13.0, *) {
+                        self?.dots[index].backgroundColor = isChoose ? .systemBlue : .systemGray4 } else {
+                            self?.dots[index].backgroundColor = isChoose ? .systemBlue : .gray
+                        }
 				})
 				})
 			.disposed(by: bag)
@@ -270,36 +320,31 @@ class LoginWithPinCodeViewController: UIViewController {
 				strongSelf.vm.deleteCharacterInToCurrentString()
 			})
 			.disposed(by: bag)
+        
+        btnLogout.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.vm.shouldLogOut()
+            })
+            .disposed(by: bag)
 	}
 
-	func showAlert(title: String? = nil, message: String? = nil, buttonName: String? = nil, handler: (() -> Void)? = nil) {
-		performInMainThread { [weak self] in
-			guard let strongSelf = self else { return }
-			
-			let alert = UIAlertController(title: title ?? "", message: message, preferredStyle: .alert)
-			let okAction = UIAlertAction(title: buttonName ?? "Oк", style: .default, handler: { _ in handler?() })
-			alert.addAction(okAction)
-			strongSelf.present(alert, animated: true, completion: nil)
-		}
-	}
 
 }
-
 
 import SwiftUI
 @available(iOS 13.0.0, *)
 struct ViewController_Previews: PreviewProvider {
   static var previews: some View {
 	Group {
-		ContainerView().preferredColorScheme(.light).edgesIgnoringSafeArea(.all)
-		ContainerView().previewDevice("iPhone SE (1st generation)").preferredColorScheme(.light).edgesIgnoringSafeArea(.all)
+        ContainerView().previewDevice("iPod touch (7th generation)").preferredColorScheme(.light).edgesIgnoringSafeArea(.all)
 	}
   }
   
   struct ContainerView: UIViewControllerRepresentable {
 	
 	
-	let tabBarVC = LoginWithPinCodeViewController()
+    let tabBarVC = LoginWithPinCodeViewController(viewModel: LoginWithPinCodeViewModel())
 	
 	func makeUIViewController(context: UIViewControllerRepresentableContext<ViewController_Previews.ContainerView>) -> LoginWithPinCodeViewController {
 	  return tabBarVC

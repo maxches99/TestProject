@@ -29,6 +29,18 @@
 		C33654B42533A87B00CD22DD /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654B32533A87B00CD22DD /* RegistrationViewModel.swift */; };
 		C33654B92533A90500CD22DD /* AuthAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654B82533A90500CD22DD /* AuthAccountViewModel.swift */; };
 		C33654BF2533AC2A00CD22DD /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C33654BE2533AC2A00CD22DD /* CryptoSwift */; };
+		C33654C4253448B600CD22DD /* UserConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654C3253448B600CD22DD /* UserConfigurator.swift */; };
+		C33654CA253451F600CD22DD /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654C9253451F600CD22DD /* ProfileViewModel.swift */; };
+		C33654D22534560800CD22DD /* SecurityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654D12534560800CD22DD /* SecurityViewModel.swift */; };
+		C33654D7253485E400CD22DD /* CreateChangePincodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654D6253485E400CD22DD /* CreateChangePincodeViewModel.swift */; };
+		C33654DC2534891F00CD22DD /* CoordinatorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654DB2534891F00CD22DD /* CoordinatorConfigurator.swift */; };
+		C33654E125348AF200CD22DD /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654E025348AF200CD22DD /* RegistrationCoordinator.swift */; };
+		C33654E625348C2A00CD22DD /* LoginWithPinCodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654E525348C2A00CD22DD /* LoginWithPinCodeCoordinator.swift */; };
+		C33654EB25348EC700CD22DD /* AuthAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654EA25348EC700CD22DD /* AuthAccountCoordinator.swift */; };
+		C33654F025348EE900CD22DD /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654EF25348EE900CD22DD /* ProfileCoordinator.swift */; };
+		C33654F525348F0400CD22DD /* SecurityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654F425348F0400CD22DD /* SecurityCoordinator.swift */; };
+		C33654FA25348F3200CD22DD /* CreateChangePincodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654F925348F3200CD22DD /* CreateChangePincodeCoordinator.swift */; };
+		C357DA1B2535282F000732E3 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357DA1A2535282F000732E3 /* UIViewController.swift */; };
 		C35E8EC825334FE900DFC32E /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E8EC725334FE900DFC32E /* SecurityViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +86,18 @@
 		C33654AE2533A7D900CD22DD /* KeychainConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConfiguration.swift; sourceTree = "<group>"; };
 		C33654B32533A87B00CD22DD /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		C33654B82533A90500CD22DD /* AuthAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAccountViewModel.swift; sourceTree = "<group>"; };
+		C33654C3253448B600CD22DD /* UserConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConfigurator.swift; sourceTree = "<group>"; };
+		C33654C9253451F600CD22DD /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		C33654D12534560800CD22DD /* SecurityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewModel.swift; sourceTree = "<group>"; };
+		C33654D6253485E400CD22DD /* CreateChangePincodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChangePincodeViewModel.swift; sourceTree = "<group>"; };
+		C33654DB2534891F00CD22DD /* CoordinatorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorConfigurator.swift; sourceTree = "<group>"; };
+		C33654E025348AF200CD22DD /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
+		C33654E525348C2A00CD22DD /* LoginWithPinCodeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPinCodeCoordinator.swift; sourceTree = "<group>"; };
+		C33654EA25348EC700CD22DD /* AuthAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAccountCoordinator.swift; sourceTree = "<group>"; };
+		C33654EF25348EE900CD22DD /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		C33654F425348F0400CD22DD /* SecurityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityCoordinator.swift; sourceTree = "<group>"; };
+		C33654F925348F3200CD22DD /* CreateChangePincodeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChangePincodeCoordinator.swift; sourceTree = "<group>"; };
+		C357DA1A2535282F000732E3 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		C35E8EC725334FE900DFC32E /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +155,7 @@
 			children = (
 				2154DD06252DCA9300B1AE32 /* AppDelegate.swift */,
 				2154DD08252DCA9300B1AE32 /* SceneDelegate.swift */,
+				C357DA1925352814000732E3 /* Extensions */,
 				C33654AA2533A7B600CD22DD /* Configurators */,
 				C33654A12533A74500CD22DD /* Helpers */,
 				215B995825303B10006DD8EA /* Scenes */,
@@ -166,6 +191,7 @@
 			children = (
 				2154DD0A252DCA9300B1AE32 /* LoginWithPinCodeViewController.swift */,
 				2154DD60252DF7F200B1AE32 /* LoginWithPinCodeViewModel.swift */,
+				C33654E525348C2A00CD22DD /* LoginWithPinCodeCoordinator.swift */,
 			);
 			path = LoginWithPinCode;
 			sourceTree = "<group>";
@@ -196,6 +222,7 @@
 			children = (
 				215B996525303D12006DD8EA /* RegistrationViewController.swift */,
 				C33654B32533A87B00CD22DD /* RegistrationViewModel.swift */,
+				C33654E025348AF200CD22DD /* RegistrationCoordinator.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -205,6 +232,7 @@
 			children = (
 				215B996E2530505A006DD8EA /* AuthAccountViewController.swift */,
 				C33654B82533A90500CD22DD /* AuthAccountViewModel.swift */,
+				C33654EA25348EC700CD22DD /* AuthAccountCoordinator.swift */,
 			);
 			path = AuthAccount;
 			sourceTree = "<group>";
@@ -213,6 +241,8 @@
 			isa = PBXGroup;
 			children = (
 				215B99772530620A006DD8EA /* ProfileViewController.swift */,
+				C33654C9253451F600CD22DD /* ProfileViewModel.swift */,
+				C33654EF25348EE900CD22DD /* ProfileCoordinator.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -221,6 +251,8 @@
 			isa = PBXGroup;
 			children = (
 				C33654992533A47900CD22DD /* CreateChangePincodeViewController.swift */,
+				C33654D6253485E400CD22DD /* CreateChangePincodeViewModel.swift */,
+				C33654F925348F3200CD22DD /* CreateChangePincodeCoordinator.swift */,
 			);
 			path = CreateChangePincode;
 			sourceTree = "<group>";
@@ -237,14 +269,26 @@
 			isa = PBXGroup;
 			children = (
 				C33654AE2533A7D900CD22DD /* KeychainConfiguration.swift */,
+				C33654C3253448B600CD22DD /* UserConfigurator.swift */,
+				C33654DB2534891F00CD22DD /* CoordinatorConfigurator.swift */,
 			);
 			path = Configurators;
+			sourceTree = "<group>";
+		};
+		C357DA1925352814000732E3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C357DA1A2535282F000732E3 /* UIViewController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C35E8EC325334FBB00DFC32E /* Security */ = {
 			isa = PBXGroup;
 			children = (
 				C35E8EC725334FE900DFC32E /* SecurityViewController.swift */,
+				C33654D12534560800CD22DD /* SecurityViewModel.swift */,
+				C33654F425348F0400CD22DD /* SecurityCoordinator.swift */,
 			);
 			path = Security;
 			sourceTree = "<group>";
@@ -392,17 +436,29 @@
 			files = (
 				215B996625303D12006DD8EA /* RegistrationViewController.swift in Sources */,
 				2154DD0B252DCA9300B1AE32 /* LoginWithPinCodeViewController.swift in Sources */,
+				C33654FA25348F3200CD22DD /* CreateChangePincodeCoordinator.swift in Sources */,
 				2154DD07252DCA9300B1AE32 /* AppDelegate.swift in Sources */,
+				C33654E125348AF200CD22DD /* RegistrationCoordinator.swift in Sources */,
 				215B996F2530505A006DD8EA /* AuthAccountViewController.swift in Sources */,
 				2154DD61252DF7F200B1AE32 /* LoginWithPinCodeViewModel.swift in Sources */,
+				C33654D7253485E400CD22DD /* CreateChangePincodeViewModel.swift in Sources */,
 				C336549A2533A47900CD22DD /* CreateChangePincodeViewController.swift in Sources */,
+				C33654F525348F0400CD22DD /* SecurityCoordinator.swift in Sources */,
 				C33654B92533A90500CD22DD /* AuthAccountViewModel.swift in Sources */,
+				C33654C4253448B600CD22DD /* UserConfigurator.swift in Sources */,
+				C33654E625348C2A00CD22DD /* LoginWithPinCodeCoordinator.swift in Sources */,
+				C33654D22534560800CD22DD /* SecurityViewModel.swift in Sources */,
+				C33654DC2534891F00CD22DD /* CoordinatorConfigurator.swift in Sources */,
+				C33654F025348EE900CD22DD /* ProfileCoordinator.swift in Sources */,
 				C33654AF2533A7D900CD22DD /* KeychainConfiguration.swift in Sources */,
 				C35E8EC825334FE900DFC32E /* SecurityViewController.swift in Sources */,
 				2154DD09252DCA9300B1AE32 /* SceneDelegate.swift in Sources */,
 				C33654B42533A87B00CD22DD /* RegistrationViewModel.swift in Sources */,
+				C357DA1B2535282F000732E3 /* UIViewController.swift in Sources */,
 				215B99782530620A006DD8EA /* ProfileViewController.swift in Sources */,
+				C33654EB25348EC700CD22DD /* AuthAccountCoordinator.swift in Sources */,
 				215B995A25303B37006DD8EA /* BiometryType.swift in Sources */,
+				C33654CA253451F600CD22DD /* ProfileViewModel.swift in Sources */,
 				C33654A32533A75900CD22DD /* KeychainPasswordItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,6 +638,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 274RF4F6D5;
 				INFOPLIST_FILE = FKStest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -601,6 +658,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 274RF4F6D5;
 				INFOPLIST_FILE = FKStest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -13,37 +13,39 @@ import CryptoSwift
 
 class LoginWithPinCodeViewModel {
 	
-	var loggedIn = PublishSubject<(Bool, Bool)>()
-	var alertError = PublishSubject<String>()
-	var currentDotIndex = PublishSubject<(Int, Bool)>()
+	let loggedIn = PublishSubject<(Bool, Bool)>()
+    let alertError = PublishSubject<String>()
+    let goToNextScreen = PublishSubject<Void>()
+    let logOut = PublishSubject<Void>()
+    let currentDotIndex = PublishSubject<(Int, Bool)>()
 	var typeOfLA: LABiometryType = .none
+    
+    var name: String {
+        user.name ?? ""
+    }
 	
 	private let context = LAContext()
+    
+    private var user = UserConfigurator.shared
 	
-	private var password = "11111"
+    private var password: String {
+        guard let pincode = user.pincode else { return "" }
+        return pincode
+    }
 	private var currentPassword = ""
 	
 	private let bag = DisposeBag()
 	
-	init(accessTypesOfBiometry: [BiometryType]) {
+	init() {
 		switch context.biometryType {
 			case .faceID:
-				typeOfLA = accessTypesOfBiometry.contains(.faceID) ? .faceID : .none
+                typeOfLA = user.isFaceID ? .faceID : .none
 			case .touchID:
-				typeOfLA = accessTypesOfBiometry.contains(.touchID) ? .touchID : .none
+                typeOfLA = user.isTouchID ? .touchID : .none
 			case .none:
 				typeOfLA = .none
 		}
-        setPinCode()
 	}
-    
-    func setPinCode() {
-        let salt = "x4vV8bGgqqmQwgCoyXFQj+(o.nUNQhVP7ND"
-        let email = UserDefaults.standard.string(forKey: "email")
-        let key = "\(email).\(salt)".sha256()
-        guard let password = UserDefaults.standard.string(forKey: key) else { return }
-        self.password = password
-    }
     
     func auth() {
         context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Biometric Auth") {
@@ -80,5 +82,10 @@ class LoginWithPinCodeViewModel {
 			currentDotIndex.onNext((currentPassword.count, false))
 		}
 	}
+    
+    func shouldLogOut() {
+        user.logOut()
+        logOut.onNext(())
+    }
 	
 }
