@@ -25,8 +25,10 @@ class RegistrationCoordinator: BaseCoordinator {
             .subscribe(onNext: {[weak self] isSign in
                 // Navigate to dashboard
                 guard let strongSelf = self else { return }
-                strongSelf.openCreatePincode()
-                strongSelf.parentCoordinator?.didFinish(coordinator: strongSelf)
+                if isSign {
+                    strongSelf.openCreatePincode()
+                    strongSelf.parentCoordinator?.didFinish(coordinator: strongSelf)
+                }
                 
             })
             .disposed(by: self.disposeBag)

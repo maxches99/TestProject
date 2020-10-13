@@ -17,7 +17,6 @@ class LoginWithPinCodeCoordinator: BaseCoordinator {
         let loginWithPinCodeViewModel = LoginWithPinCodeViewModel()
         let viewController = LoginWithPinCodeViewController(viewModel: loginWithPinCodeViewModel)
         
-        
         // Coordinator subscribes to events and decides when and how to navigate
         loginWithPinCodeViewModel.goToNextScreen
             .take(1)
@@ -55,11 +54,13 @@ class LoginWithPinCodeCoordinator: BaseCoordinator {
             let scene = UIApplication.shared.connectedScenes.first
             if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
                 parentCoordinator?.didFinish(coordinator: self)
+                sd.appCoordinator.isLogout = true
                 sd.appCoordinator.start()
             }
         } else {
             parentCoordinator?.didFinish(coordinator: self)
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.appCoordinator.isLogout = true
             appDelegate.appCoordinator.start()
         }
     }

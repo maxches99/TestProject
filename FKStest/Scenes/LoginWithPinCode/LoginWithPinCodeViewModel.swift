@@ -21,15 +21,13 @@ class LoginWithPinCodeViewModel {
 	var typeOfLA: LABiometryType = .none
     
     var name: String {
-        user.name ?? ""
+        UserConfigurator.shared.name ?? ""
     }
-	
-	private let context = LAContext()
     
-    private var user = UserConfigurator.shared
-	
+    private let context = LAContext()
+    
     private var password: String {
-        guard let pincode = user.pincode else { return "" }
+        guard let pincode = UserConfigurator.shared.pincode else { return "" }
         return pincode
     }
 	private var currentPassword = ""
@@ -37,14 +35,18 @@ class LoginWithPinCodeViewModel {
 	private let bag = DisposeBag()
 	
 	init() {
-		switch context.biometryType {
-			case .faceID:
-                typeOfLA = user.isFaceID ? .faceID : .none
-			case .touchID:
-                typeOfLA = user.isTouchID ? .touchID : .none
-			case .none:
-				typeOfLA = .none
-		}
+        UserConfigurator.shared.refresh()
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
+            switch context.biometryType {
+            case .faceID:
+                typeOfLA = UserConfigurator.shared.isFaceID ? .faceID : .none
+            case .touchID:
+                typeOfLA = UserConfigurator.shared.isTouchID ? .touchID : .none
+            case .none:
+                typeOfLA = .none
+            }} else {
+                typeOfLA = .none
+            }
 	}
     
     func auth() {
@@ -84,7 +86,7 @@ class LoginWithPinCodeViewModel {
 	}
     
     func shouldLogOut() {
-        user.logOut()
+        UserConfigurator.shared.logOut()
         logOut.onNext(())
     }
 	

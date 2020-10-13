@@ -24,19 +24,20 @@ class RegistrationViewModel {
     func signIn(_ email: String, password: String, name: String) {
         if let passwordItems = try? KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: email).readPassword() {
             isSignIn.onNext(false)
-            return
+        } else {
+            do{
+                try KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: email).savePassword(passwordHash(from: email, password: password))
+                try KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "\(email).name").savePassword(name)
+                user.name = name
+                user.email = email
+                UserDefaults.standard.setValue(name, forKey: "name")
+                UserDefaults.standard.setValue(email, forKey: "email")
+                isSignIn.onNext(true)
+            }
+            catch {
+                isSignIn.onNext(false)
         }
-        do{
-            try KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: email).savePassword(passwordHash(from: email, password: password))
-            try KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "\(email).name").savePassword(name)
-            user.name = name
-            user.email = email
-            UserDefaults.standard.setValue(name, forKey: "name")
-            UserDefaults.standard.setValue(email, forKey: "email")
-            isSignIn.onNext(true)
-        }
-        catch {
-            isSignIn.onNext(false)
+            
         }
     }
     

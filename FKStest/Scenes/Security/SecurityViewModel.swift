@@ -19,16 +19,18 @@ class SecurityViewModel {
     let goToChangePincode = PublishSubject<Void>()
     let toggleTouchID = PublishSubject<Void>()
     let toggleFaceID = PublishSubject<Void>()
+    let changeStateFaceID = PublishSubject<Void>()
+    let changeStateTouchID = PublishSubject<Void>()
     
     private let bag = DisposeBag()
     
-    private let user = UserConfigurator()
-    
-    private let context = LAContext()
+    private let user = UserConfigurator.shared
     
     init() {
         isFaceID = user.isFaceID
         isTouchID = user.isTouchID
+        
+        setupBindings()
     }
     
     private func setupBindings() {
@@ -36,16 +38,19 @@ class SecurityViewModel {
             .asDriver(onErrorJustReturn: ())
             .drive(onNext: { [weak self] in
                 guard let strongSelf = self else { return }
-                
-                strongSelf.context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Biometric Auth") {
+                let context = LAContext()
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Biometric Auth") {
                     [weak self] (res, err) in
                     DispatchQueue.main.async {
                         if res {
-                            strongSelf.user.toggleTouchID()
+                            self?.user.toggleFaceID()
+                            self?.isTouchID.toggle()
+                            self?.changeStateTouchID.onNext(())
+                        } else {
+                            self?.changeStateTouchID.onNext(())
                         }
                     }
                 }
-                strongSelf.isTouchID = strongSelf.user.isTouchID
             })
             .disposed(by: bag)
         
@@ -53,15 +58,19 @@ class SecurityViewModel {
             .asDriver(onErrorJustReturn: ())
             .drive(onNext: { [weak self] in
                 guard let strongSelf = self else { return }
-                strongSelf.context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Biometric Auth") {
+                let context = LAContext()
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Biometric Auth") {
                     [weak self] (res, err) in
                     DispatchQueue.main.async {
                         if res {
-                            strongSelf.user.toggleFaceID()
+                            self?.user.toggleFaceID()
+                            self?.isFaceID.toggle()
+                            self?.changeStateFaceID.onNext(())
+                        } else {
+                            self?.changeStateFaceID.onNext(())
                         }
                     }
                 }
-                strongSelf.isFaceID = strongSelf.user.isFaceID
             })
             .disposed(by: bag)
     }
