@@ -23,8 +23,8 @@ class CreateChangePincodeCoordinator: BaseCoordinator {
             .subscribe(onNext: {[weak self] isSign in
                 // Navigate to dashboard
                 guard let strongSelf = self else { return }
-                strongSelf.openProfile()
                 strongSelf.parentCoordinator?.didFinish(coordinator: strongSelf)
+                strongSelf.openProfile()
             })
             .disposed(by: self.disposeBag)
         

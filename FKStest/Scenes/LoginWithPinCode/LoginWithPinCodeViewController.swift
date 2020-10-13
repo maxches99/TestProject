@@ -104,7 +104,7 @@ class LoginWithPinCodeViewController: UIViewController {
 	private lazy var dots: [UIView] = {
 		var arrDots: [UIView] = []
 		
-		for _ in 0..<5 {
+		for _ in 0..<4 {
 			let dot = UIView()
             if #available(iOS 13.0, *) {
                 dot.backgroundColor = .systemGray4
