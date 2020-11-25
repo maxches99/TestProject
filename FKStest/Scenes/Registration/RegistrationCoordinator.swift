@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import CoreData
 
 class RegistrationCoordinator: BaseCoordinator {
     
@@ -19,6 +20,7 @@ class RegistrationCoordinator: BaseCoordinator {
         let registrationViewModel = RegistrationViewModel()
         registrationViewController.vm = registrationViewModel
         registrationViewController.hidesBottomBarWhenPushed = true
+		
         
         // Coordinator subscribes to events and decides when and how to navigate
         registrationViewModel.isSignIn

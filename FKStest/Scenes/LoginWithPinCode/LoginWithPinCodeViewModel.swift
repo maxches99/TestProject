@@ -27,8 +27,7 @@ class LoginWithPinCodeViewModel {
     private let context = LAContext()
     
     private var password: String {
-        guard let pincode = UserConfigurator.shared.pincode else { return "" }
-        return pincode
+        return UserConfigurator.shared.pincode
     }
 	private var currentPassword = ""
 	
@@ -39,9 +38,9 @@ class LoginWithPinCodeViewModel {
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
             switch context.biometryType {
             case .faceID:
-                typeOfLA = UserConfigurator.shared.isFaceID ? .faceID : .none
+                typeOfLA = UserConfigurator.shared.isFaceID ?? false ? .faceID : .none
             case .touchID:
-                typeOfLA = UserConfigurator.shared.isTouchID ? .touchID : .none
+                typeOfLA = UserConfigurator.shared.isTouchID ?? false ? .touchID : .none
             case .none:
                 typeOfLA = .none
             }} else {

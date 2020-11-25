@@ -27,8 +27,8 @@ class SecurityViewModel {
     private let user = UserConfigurator.shared
     
     init() {
-        isFaceID = user.isFaceID
-        isTouchID = user.isTouchID
+        isFaceID = user.isFaceID ?? false
+        isTouchID = user.isTouchID ?? false
         
         setupBindings()
     }

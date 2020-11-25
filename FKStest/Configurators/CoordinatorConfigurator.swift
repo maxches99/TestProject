@@ -60,7 +60,7 @@ class AppCoordinator: BaseCoordinator {
         
         let user = UserConfigurator.shared
         user.refresh()
-        if let pincode = user.pincode {
+		if !user.pincode.isEmpty {
             if !isLogout {
                 openPincode()
             } else {

@@ -46,7 +46,5 @@ class CreateChangePincodeViewModel {
             })
             .disposed(by: bag)
     }
-    
-    
-    
+	
 }

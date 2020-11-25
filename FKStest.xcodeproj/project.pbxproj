@@ -23,6 +23,14 @@
 		215B996625303D12006DD8EA /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B996525303D12006DD8EA /* RegistrationViewController.swift */; };
 		215B996F2530505A006DD8EA /* AuthAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B996E2530505A006DD8EA /* AuthAccountViewController.swift */; };
 		215B99782530620A006DD8EA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B99772530620A006DD8EA /* ProfileViewController.swift */; };
+		2166F0DE256E41E7006ED28E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2166F0DD256E41E7006ED28E /* WidgetKit.framework */; };
+		2166F0E0256E41E7006ED28E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2166F0DF256E41E7006ED28E /* SwiftUI.framework */; };
+		2166F0E3256E41E7006ED28E /* FKSTestWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166F0E2256E41E7006ED28E /* FKSTestWidget.swift */; };
+		2166F0E6256E41E8006ED28E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2166F0E5256E41E8006ED28E /* Assets.xcassets */; };
+		2166F0E8256E41E8006ED28E /* FKSTestWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 2166F0E4256E41E7006ED28E /* FKSTestWidget.intentdefinition */; };
+		2166F0E9256E41E8006ED28E /* FKSTestWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 2166F0E4256E41E7006ED28E /* FKSTestWidget.intentdefinition */; };
+		2166F0EC256E41E8006ED28E /* FKSTestWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2166F0DB256E41E7006ED28E /* FKSTestWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2166F0F7256E4525006ED28E /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2166F0F5256E4525006ED28E /* UserModel.xcdatamodeld */; };
 		C336549A2533A47900CD22DD /* CreateChangePincodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654992533A47900CD22DD /* CreateChangePincodeViewController.swift */; };
 		C33654A32533A75900CD22DD /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654A22533A75900CD22DD /* KeychainPasswordItem.swift */; };
 		C33654AF2533A7D900CD22DD /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33654AE2533A7D900CD22DD /* KeychainConfiguration.swift */; };
@@ -59,7 +67,28 @@
 			remoteGlobalIDString = 2154DD02252DCA9300B1AE32;
 			remoteInfo = FKStest;
 		};
+		2166F0EA256E41E8006ED28E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2154DCFB252DCA9300B1AE32 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2166F0DA256E41E7006ED28E;
+			remoteInfo = FKSTestWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2166F0ED256E41E8006ED28E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2166F0EC256E41E8006ED28E /* FKSTestWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2154DD03252DCA9300B1AE32 /* FKStest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FKStest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +110,14 @@
 		215B996525303D12006DD8EA /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		215B996E2530505A006DD8EA /* AuthAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAccountViewController.swift; sourceTree = "<group>"; };
 		215B99772530620A006DD8EA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2166F0DB256E41E7006ED28E /* FKSTestWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FKSTestWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2166F0DD256E41E7006ED28E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		2166F0DF256E41E7006ED28E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		2166F0E2256E41E7006ED28E /* FKSTestWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FKSTestWidget.swift; sourceTree = "<group>"; };
+		2166F0E4256E41E7006ED28E /* FKSTestWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = FKSTestWidget.intentdefinition; sourceTree = "<group>"; };
+		2166F0E5256E41E8006ED28E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2166F0E7256E41E8006ED28E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2166F0F6256E4525006ED28E /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		C33654992533A47900CD22DD /* CreateChangePincodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChangePincodeViewController.swift; sourceTree = "<group>"; };
 		C33654A22533A75900CD22DD /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		C33654AE2533A7D900CD22DD /* KeychainConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConfiguration.swift; sourceTree = "<group>"; };
@@ -127,6 +164,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2166F0D8256E41E7006ED28E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2166F0E0256E41E7006ED28E /* SwiftUI.framework in Frameworks */,
+				2166F0DE256E41E7006ED28E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -136,6 +182,8 @@
 				2154DD05252DCA9300B1AE32 /* FKStest */,
 				2154DD1C252DCA9600B1AE32 /* FKStestTests */,
 				2154DD27252DCA9600B1AE32 /* FKStestUITests */,
+				2166F0E1256E41E7006ED28E /* FKSTestWidget */,
+				2166F0DC256E41E7006ED28E /* Frameworks */,
 				2154DD04252DCA9300B1AE32 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -146,6 +194,7 @@
 				2154DD03252DCA9300B1AE32 /* FKStest.app */,
 				2154DD19252DCA9600B1AE32 /* FKStestTests.xctest */,
 				2154DD24252DCA9600B1AE32 /* FKStestUITests.xctest */,
+				2166F0DB256E41E7006ED28E /* FKSTestWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,6 +213,7 @@
 				2154DD0F252DCA9500B1AE32 /* Assets.xcassets */,
 				2154DD11252DCA9500B1AE32 /* LaunchScreen.storyboard */,
 				2154DD14252DCA9500B1AE32 /* Info.plist */,
+				2166F0F5256E4525006ED28E /* UserModel.xcdatamodeld */,
 			);
 			path = FKStest;
 			sourceTree = "<group>";
@@ -247,6 +297,26 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		2166F0DC256E41E7006ED28E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2166F0DD256E41E7006ED28E /* WidgetKit.framework */,
+				2166F0DF256E41E7006ED28E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2166F0E1256E41E7006ED28E /* FKSTestWidget */ = {
+			isa = PBXGroup;
+			children = (
+				2166F0E2256E41E7006ED28E /* FKSTestWidget.swift */,
+				2166F0E4256E41E7006ED28E /* FKSTestWidget.intentdefinition */,
+				2166F0E5256E41E8006ED28E /* Assets.xcassets */,
+				2166F0E7256E41E8006ED28E /* Info.plist */,
+			);
+			path = FKSTestWidget;
+			sourceTree = "<group>";
+		};
 		C33654982533A45500CD22DD /* CreateChangePincode */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,10 +373,12 @@
 				2154DCFF252DCA9300B1AE32 /* Sources */,
 				2154DD00252DCA9300B1AE32 /* Frameworks */,
 				2154DD01252DCA9300B1AE32 /* Resources */,
+				2166F0ED256E41E8006ED28E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2166F0EB256E41E8006ED28E /* PBXTargetDependency */,
 			);
 			name = FKStest;
 			packageProductDependencies = (
@@ -355,13 +427,30 @@
 			productReference = 2154DD24252DCA9600B1AE32 /* FKStestUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		2166F0DA256E41E7006ED28E /* FKSTestWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2166F0F0256E41E8006ED28E /* Build configuration list for PBXNativeTarget "FKSTestWidgetExtension" */;
+			buildPhases = (
+				2166F0D7256E41E7006ED28E /* Sources */,
+				2166F0D8256E41E7006ED28E /* Frameworks */,
+				2166F0D9256E41E7006ED28E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FKSTestWidgetExtension;
+			productName = FKSTestWidgetExtension;
+			productReference = 2166F0DB256E41E7006ED28E /* FKSTestWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		2154DCFB252DCA9300B1AE32 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					2154DD02252DCA9300B1AE32 = {
@@ -374,6 +463,9 @@
 					2154DD23252DCA9600B1AE32 = {
 						CreatedOnToolsVersion = 12.0.1;
 						TestTargetID = 2154DD02252DCA9300B1AE32;
+					};
+					2166F0DA256E41E7006ED28E = {
+						CreatedOnToolsVersion = 12.2;
 					};
 				};
 			};
@@ -398,6 +490,7 @@
 				2154DD02252DCA9300B1AE32 /* FKStest */,
 				2154DD18252DCA9600B1AE32 /* FKStestTests */,
 				2154DD23252DCA9600B1AE32 /* FKStestUITests */,
+				2166F0DA256E41E7006ED28E /* FKSTestWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -427,6 +520,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2166F0D9256E41E7006ED28E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2166F0E6256E41E8006ED28E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -448,7 +549,9 @@
 				C33654C4253448B600CD22DD /* UserConfigurator.swift in Sources */,
 				C33654E625348C2A00CD22DD /* LoginWithPinCodeCoordinator.swift in Sources */,
 				C33654D22534560800CD22DD /* SecurityViewModel.swift in Sources */,
+				2166F0F7256E4525006ED28E /* UserModel.xcdatamodeld in Sources */,
 				C33654DC2534891F00CD22DD /* CoordinatorConfigurator.swift in Sources */,
+				2166F0E9256E41E8006ED28E /* FKSTestWidget.intentdefinition in Sources */,
 				C33654F025348EE900CD22DD /* ProfileCoordinator.swift in Sources */,
 				C33654AF2533A7D900CD22DD /* KeychainConfiguration.swift in Sources */,
 				C35E8EC825334FE900DFC32E /* SecurityViewController.swift in Sources */,
@@ -479,6 +582,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2166F0D7256E41E7006ED28E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2166F0E3256E41E7006ED28E /* FKSTestWidget.swift in Sources */,
+				2166F0E8256E41E8006ED28E /* FKSTestWidget.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -491,6 +603,11 @@
 			isa = PBXTargetDependency;
 			target = 2154DD02252DCA9300B1AE32 /* FKStest */;
 			targetProxy = 2154DD25252DCA9600B1AE32 /* PBXContainerItemProxy */;
+		};
+		2166F0EB256E41E8006ED28E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2166F0DA256E41E7006ED28E /* FKSTestWidgetExtension */;
+			targetProxy = 2166F0EA256E41E8006ED28E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -633,6 +750,7 @@
 		2154DD2E252DCA9600B1AE32 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -653,6 +771,7 @@
 		2154DD2F252DCA9600B1AE32 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -754,6 +873,50 @@
 			};
 			name = Release;
 		};
+		2166F0EE256E41E8006ED28E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 274RF4F6D5;
+				INFOPLIST_FILE = FKSTestWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ChesnikovEngine.FKStest.FKSTestWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2166F0EF256E41E8006ED28E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 274RF4F6D5;
+				INFOPLIST_FILE = FKSTestWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ChesnikovEngine.FKStest.FKSTestWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -789,6 +952,15 @@
 			buildConfigurations = (
 				2154DD34252DCA9600B1AE32 /* Debug */,
 				2154DD35252DCA9600B1AE32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2166F0F0256E41E8006ED28E /* Build configuration list for PBXNativeTarget "FKSTestWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2166F0EE256E41E8006ED28E /* Debug */,
+				2166F0EF256E41E8006ED28E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -844,6 +1016,19 @@
 			productName = CryptoSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		2166F0F5256E4525006ED28E /* UserModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2166F0F6256E4525006ED28E /* UserModel.xcdatamodel */,
+			);
+			currentVersion = 2166F0F6256E4525006ED28E /* UserModel.xcdatamodel */;
+			path = UserModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2154DCFB252DCA9300B1AE32 /* Project object */;
 }

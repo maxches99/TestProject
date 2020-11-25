@@ -14,6 +14,7 @@ class ProfileViewModel {
     let email: String
     
     let goToSecurityScreen = PublishSubject<Void>()
+	let changePhoto = PublishSubject<Void>()
     let logOut = PublishSubject<Void>()
     
     private let user = UserConfigurator.shared

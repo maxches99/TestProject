@@ -7,49 +7,134 @@
 
 import Foundation
 import LocalAuthentication
+import UIKit
+import CoreData
 
 class UserConfigurator {
     
     static let shared = UserConfigurator()
     
     let context = LAContext()
+	
+	var user: [NSManagedObject] = []
     
-    var name = UserDefaults.standard.string(forKey: "name")
+	var name: String
     
-    var email = UserDefaults.standard.string(forKey: "email")
+	var email: String
     
-    private(set) var pincode = UserDefaults.standard.string(forKey: "pincode")
+	var pincode: String {
+		UserDefaults.standard.string(forKey: "pincode") ?? ""
+	}
     
-    private(set) var isTouchID = UserDefaults.standard.bool(forKey: "isTouchID")
+	private(set) var isTouchID: Bool
     
-    private(set) var isFaceID = UserDefaults.standard.bool(forKey: "isFaceID")
-    
-    func refresh() {
-        pincode = UserDefaults.standard.string(forKey: "pincode")
-        
-        isTouchID = UserDefaults.standard.bool(forKey: "isTouchID")
-        
-        isFaceID = UserDefaults.standard.bool(forKey: "isFaceID")
-    }
-    
-    func toggleTouchID() {
-        UserDefaults.standard.setValue(!isTouchID, forKey: "isTouchID")
-    }
-    
-    func toggleFaceID() {
-        UserDefaults.standard.setValue(!isFaceID, forKey: "isFaceID")
-    }
-    
-    func setPincode(pinCode: String) {
-        UserDefaults.standard.setValue(pinCode, forKey: "pincode")
-    }
-    
-    func logOut() {
-        UserDefaults.standard.setValue(false, forKey: "isTouchID")
-        UserDefaults.standard.setValue(false, forKey: "isFaceID")
+	private(set) var isFaceID: Bool
+	
+	private var person: NSManagedObject
+	
+	private let managedContext: NSManagedObjectContext
+	
+	init() {
+		
+		guard let appDelegate =
+				UIApplication.shared.delegate as? AppDelegate else {
+			name = ""
+			
+			email =  ""
+			
+			isTouchID = false
+			
+			isFaceID = false
+			
+			person = NSManagedObject()
+			
+			managedContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+			
+			return
+		}
+		
+		managedContext =
+			appDelegate.persistanceContainer.viewContext
+		
+		let fetchRequest =
+			NSFetchRequest<NSManagedObject>(entityName: "User")
+		
+		guard let user = try? managedContext.fetch(fetchRequest) else {
+			name = ""
+			
+			email =  ""
+			
+			isTouchID = false
+			
+			isFaceID = false
+			
+			person = NSManagedObject()
+			
+			return
+		}
+		
+		guard let person = user.first(where: {
+										$0.value(forKeyPath: "email") as? String ?? "" ==
+											UserDefaults.standard.string(forKey: "email")
+			
+		}) else {
+			name = ""
+			
+			email =  ""
+			
+			isTouchID = false
+			
+			isFaceID = false
+			
+			self.person = NSManagedObject()
+			
+			return
+		}
+		
+		self.person = person
+		
+		name = person.value(forKeyPath: "name") as? String ?? ""
+		
+		email = person.value(forKeyPath: "email") as? String ?? ""
+		
+		isTouchID = person.value(forKeyPath: "isTouchID") as? Bool ?? false
+		
+		isFaceID = person.value(forKeyPath: "isFaceID") as? Bool ?? false
+	}
+	
+	func refresh() {
+		guard let person = user.first(where: {
+										$0.value(forKeyPath: "email") as? String ?? "" ==
+											UserDefaults.standard.string(forKey: "email")
+			
+		}) else {
+			return
+		}
+		
+		self.person = person
+		
+		isTouchID = person.value(forKeyPath: "isTouchID") as? Bool ?? false
+		
+		isFaceID = person.value(forKeyPath: "isFaceID") as? Bool ?? false
+	}
+	
+	func toggleTouchID() {
+		person.setValue(!(isTouchID ?? false), forKey: "isTouchID")
+		try? managedContext.save()
+	}
+	
+	func toggleFaceID() {
+		person.setValue(!(isFaceID ?? false), forKey: "isFaceID")
+		try? managedContext.save()
+	}
+	
+	func setPincode(pinCode: String) {
+		UserDefaults.standard.setValue(pinCode, forKey: "pincode")
+	}
+	
+	func logOut() {
         UserDefaults.standard.setValue(nil, forKey: "pincode")
         UserDefaults.standard.setValue(nil, forKey: "email")
-        UserDefaults.standard.setValue(nil, forKey: "name")
     }
     
 }

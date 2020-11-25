@@ -214,7 +214,7 @@ class RegistrationViewController: UIViewController {
                 lblErrorEmail,
                 lblErrorPassword)
 		VStack.left(16).right(16).centerVertically()
-		lblSubtitle.left(16).right(16).Bottom == VStack.Top - 16
+		lblSubtitle.left(16).right(16).Bottom == VStack.Top - 32
 		lblTitle.centerHorizontally().Bottom == lblSubtitle.Top - 16
 		imgLogo.centerHorizontally().height(50).width(40).Bottom == lblTitle.Top - 16
 		hStackLogin.centerHorizontally().bottom(16)

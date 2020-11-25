@@ -71,6 +71,18 @@ class ProfileViewController: UIViewController {
 		return btn
 	}()
 	
+	private var btnPhotoChange: UIButton = {
+		let btn = UIButton()
+		
+		btn.text("Сменить фото профиля")
+		btn.backgroundColor = .clear
+		btn.tintColor = .systemBlue
+		btn.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+		btn.setTitleColor(.systemBlue, for: .normal)
+		
+		return btn
+	}()
+	
 	private var btnLogout: UIButton = {
 		let btn = UIButton()
 		
@@ -111,13 +123,15 @@ class ProfileViewController: UIViewController {
 				lblName,
 				lblEmail,
 				separator2,
+				btnPhotoChange,
 				btnAuthChange,
 				btnLogout)
         imgLogo.centerHorizontally().size(100).top(32 + topbarHeight)
 		lblName.left(16).right(16).Top == imgLogo.Bottom + 16 * UIScreen.main.nativeScale / 2
 		lblEmail.left(16).right(16).Top == lblName.Bottom + 8 * UIScreen.main.nativeScale / 2
 		separator2.left(48).right(48).Top == lblEmail.Bottom + 8 * UIScreen.main.nativeScale / 2
-		btnAuthChange.left(48).Top == separator2.Bottom + 8 * UIScreen.main.nativeScale / 2
+		btnPhotoChange.left(48).Top == separator2.Bottom + 8 * UIScreen.main.nativeScale / 2
+		btnAuthChange.left(48).Top == btnPhotoChange.Bottom + 8 * UIScreen.main.nativeScale / 2
 		btnLogout.left(48).Top == btnAuthChange.Bottom + 8 * UIScreen.main.nativeScale / 2
         
         imgLogo.layer.cornerRadius = 50
@@ -144,6 +158,13 @@ class ProfileViewController: UIViewController {
         
         lblName.text(vm?.name ?? "")
         lblEmail.text(vm?.email ?? "")
+		
+		btnPhotoChange.rx.tap
+			.asDriver()
+			.drive(onNext: { [weak self] in
+				self?.vm?.changePhoto.onNext(())
+			})
+			.disposed(by: bag)
         
         btnAuthChange.rx.tap
             .asDriver()

@@ -9,6 +9,8 @@ import RxSwift
 import RxCocoa
 import CryptoSwift
 import Foundation
+import CoreData
+import UIKit
 
 class RegistrationViewModel {
     
@@ -32,6 +34,35 @@ class RegistrationViewModel {
                 user.email = email
                 UserDefaults.standard.setValue(name, forKey: "name")
                 UserDefaults.standard.setValue(email, forKey: "email")
+				
+				guard let appDelegate =
+					UIApplication.shared.delegate as? AppDelegate else {
+					return
+				  }
+				  
+				  // 1
+				  let managedContext =
+					appDelegate.persistanceContainer.viewContext
+				  
+				  // 2
+				  let entity =
+					NSEntityDescription.entity(forEntityName: "User",
+											   in: managedContext)!
+				  
+				  let person = NSManagedObject(entity: entity,
+											   insertInto: managedContext)
+				  
+				  // 3
+				  person.setValue(name, forKeyPath: "name")
+				  person.setValue(email, forKeyPath: "email")
+				  
+				  // 4
+				  do {
+					try managedContext.save()
+				  } catch let error as NSError {
+					print("Could not save. \(error), \(error.userInfo)")
+				  }
+				
                 isSignIn.onNext(true)
             }
             catch {
